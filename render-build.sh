@@ -1,6 +1,6 @@
-﻿#!/usr/bin/env bash
+﻿#!/bin/bash
 
-# Install .NET SDK (latest version)
+# Install .NET SDK
 echo "Installing .NET SDK..."
 wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 chmod +x dotnet-install.sh
@@ -10,6 +10,11 @@ chmod +x dotnet-install.sh
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$HOME/dotnet:$PATH
 
-# Build the .NET project
-echo "Building the project..."
-dotnet publish -c Release -o out
+# Verify .NET installation
+$HOME/dotnet/dotnet --version
+
+# Publish the .NET project (make sure the path is correct)
+$HOME/dotnet/dotnet publish -c Release -o $HOME/out
+
+# List the files in the out directory for verification
+ls -R $HOME/out
