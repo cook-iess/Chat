@@ -3,6 +3,7 @@
 # Define installation directories
 INSTALL_DIR=/opt/render/dotnet
 OUTPUT_DIR=/opt/render/out
+PROJECT_FILE=/opt/render/project/src/Chat/Chat.csproj  # Update this to the correct path of your project file
 
 # Install .NET SDK 7.0 (use the official script)
 echo "Installing .NET SDK 7.0..."
@@ -21,13 +22,15 @@ $INSTALL_DIR/dotnet --version
 # Check if dotnet command is available
 echo "Checking if 'dotnet' command is available..."
 which dotnet
-echo "Environment Variables:"
-env
 
-# Publish the .NET project
+# Publish the .NET project (use the .csproj file instead of the solution file)
 echo "Publishing .NET project..."
-$INSTALL_DIR/dotnet publish -c Release -o $OUTPUT_DIR
+$INSTALL_DIR/dotnet publish $PROJECT_FILE -c Release -o $OUTPUT_DIR
 
 # List files in output directory for verification
 echo "Listing files in output directory..."
 ls -R $OUTPUT_DIR
+
+# Check if the .NET installation works
+echo "Checking if dotnet command works..."
+which dotnet
